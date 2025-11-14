@@ -12,7 +12,7 @@ resource "aws_security_group" "alb_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.2.0/24", "10.0.3.0/24"]
+    cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_lb" "e-commerce_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = var.public_subnet_id
+  subnets            = var.public_subnet_ids
   tags = {
     Name = "e-commerce-alb"
   }

@@ -15,13 +15,14 @@ resource "aws_internet_gateway" "Geteway" {
 }
 
 #Creacion subnet publica.
-resource "aws_subnet" "public_subnet" { #Subnet para el balanceador 
+resource "aws_subnet" "public_subnet" { #Subnets para el balanceador 
+    count = 2 
     vpc_id = aws_vpc.vpc-e-commerce.id
-    cidr_block = "10.0.1.0/24"
+    cidr_block = cidrsubnet("10.0.0.0/16", 8, count.index + 1) #cidrsubnet: Funcion para calcular las direcciones de subnet.
     map_public_ip_on_launch = true
-    availability_zone       = "us-east-1a"
+    availability_zone       = element(["us-east-1a", "us-east-1b"], count.index) #element: Funcion que devuelve el elemento de una lista segun su indice.
   tags = {
-    Name = "subnet-publica"
+    Name = "subnet-publica-${count.index + 1}"
   } 
 }
 
@@ -29,7 +30,7 @@ resource "aws_subnet" "public_subnet" { #Subnet para el balanceador
 resource "aws_subnet" "private_subnet" {
   count                   = 2
   vpc_id                  = aws_vpc.vpc-e-commerce.id
-  cidr_block              = cidrsubnet("10.0.0.0/16", 8, count.index + 2) #cidrsubnet: Funcion para calcular las direcciones de subnet.
+  cidr_block              = cidrsubnet("10.0.0.0/16", 8, count.index + 3) #cidrsubnet: Funcion para calcular las direcciones de subnet.
   map_public_ip_on_launch = false
   availability_zone       = element(["us-east-1a", "us-east-1b"], count.index) #element: Funcion que devuelve el elemento de una lista segun su indice.
   tags = {
@@ -48,6 +49,7 @@ resource "aws_route_table" "RT_ecommerce" {
 
 #Asosiacion route table con subnet publica.
 resource "aws_route_table_association" "public" { 
-  subnet_id      = aws_subnet.public_subnet.id
+  count          = 2
+  subnet_id      = aws_subnet.public_subnet[count.index].id
   route_table_id = aws_route_table.RT_ecommerce.id
 }

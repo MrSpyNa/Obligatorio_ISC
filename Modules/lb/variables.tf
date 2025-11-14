@@ -3,7 +3,7 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "public_subnet_id" {
+variable "public_subnet_ids" {
   description = "ID de la subred publica"
-  type        = list(string)
+  type        = list
 }

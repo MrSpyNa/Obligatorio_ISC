@@ -4,11 +4,11 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-  description = "ID de la subred pública"
-  value       = aws_subnet.public_subnet.id
+  description = "ID de las subredes públicas"
+  value       = aws_subnet.public_subnet[*].id
 }
 
 output "private_subnet_ids" {
-  description = "Lista de IDs de las subredes privadas"
+  description = "IDs de las subredes privadas"
   value       = aws_subnet.private_subnet[*].id
 }
