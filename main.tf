@@ -17,3 +17,10 @@ module "autoscaling" {
 
   public_subnet_ids = module.vpc.private_subnet_ids
 }
+module "database" {
+  source             = "./Modules/database"
+  vpc_id             = module.vpc.vpc_id
+  private_subnet_ids = module.vpc.private_subnet_ids
+  asg_sg_id          = module.autoscaling.asg_sg_id
+  // db_password          = "TuContraseñaSegura123" # O usar una variable de entorno/Secret Manager
+}

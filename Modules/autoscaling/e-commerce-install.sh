@@ -9,3 +9,6 @@ sudo systemctl enable httpd
 sudo systemctl start httpd
 git clone https://github.com/ORT-FI-7417-SolucionesCloud/php-ecommerce-obligatorio.git
 cp -r php-ecommerce-obligatorio/* /var/www/html/
+sudo yum install php-mysql.x86_64
+mysql -h {db_endpoint} -u db_user -p e-commerce < /var/www/html/dump.sql
+sudo systemctl restart httpd
