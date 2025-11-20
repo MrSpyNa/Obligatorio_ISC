@@ -29,8 +29,8 @@ ingress {
 }
 resource "aws_launch_template" "e-commerce_lt" {
   name_prefix   = "e-commerce-lt"
-  image_id      = "ami-015fbfef74ae27107"
-  instance_type = "t3.small"
+  image_id      = "ami-0c2b8ca1dad447f8a"
+  instance_type = "t3.micro"
   key_name      = "vockey"
   # Script para la instalación de la aplicación
   user_data     = filebase64("${path.module}/e-commerce-install.sh")
@@ -46,7 +46,7 @@ resource "aws_autoscaling_group" "e-commerce_asg" {
   max_size            = 6
   min_size            = 2
   # Implementa la tolerancia a fallas al usar subredes en múltiples AZs 
-  vpc_zone_identifier = var.private_subnet_ids
+  vpc_zone_identifier = var.public_subnet_ids #cambiar nuevamente a privada, mera razon de testeo
   # Conexión al Target Group del Load Balancer
   target_group_arns   = [var.target_group_arn]
 
