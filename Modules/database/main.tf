@@ -33,11 +33,11 @@ resource "aws_db_instance" "e-commerce_db" {
   identifier           = "e-commerce-db-instance"
   allocated_storage    = 20
   engine               = "mysql"
-  engine_version       = "5.7.44" # Versión 5.7.x requerida
+  engine_version       = "5.7.44-rds.20250818" # Versión 5.7.x requerida
   instance_class       = "db.t3.micro"
-  db_name              = "e-commerce"
+  db_name              = "ecommerce"
   username             = "db_user"
-  password             = "123456"
+  password             = "12345678"
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.name
   vpc_security_group_ids = [aws_security_group.e-commerce_db_sg.id]
   skip_final_snapshot  = true

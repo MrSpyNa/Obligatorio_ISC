@@ -14,6 +14,10 @@ module "autoscaling" {
   private_subnet_ids    = module.vpc.private_subnet_ids
   target_group_arn      = module.loadbalancer.target_group_arn
   alb_security_group_id = module.loadbalancer.alb_security_group_id
+  db_database = module.database.db_name
+  db_endpoint = module.database.db_endpoint
+  db_password = module.database.db_password
+  db_user = module.database.db_user
 
   public_subnet_ids = module.vpc.private_subnet_ids
 }
