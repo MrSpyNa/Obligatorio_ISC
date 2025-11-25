@@ -35,12 +35,13 @@ resource "aws_launch_template" "e-commerce_lt" {
   # Script para la instalación de la aplicación
   user_data     = base64encode(
     format(
-      "%s %s %s %s %s",
+      "%s %s %s %s %s %s",
       file("${path.module}/e-commerce-install.sh"), 
       var.db_endpoint,
       var.db_user,
       var.db_password,
-      var.db_database
+      var.db_database,
+      var.git_token
   )
   )
   vpc_security_group_ids = [aws_security_group.asg_sg.id]

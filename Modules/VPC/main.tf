@@ -53,3 +53,45 @@ resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public_subnet[count.index].id
   route_table_id = aws_route_table.RT_ecommerce.id
 }
+
+# 1. Elastic IP para el NAT Gateway
+resource "aws_eip" "nat_gateway_eip" {
+  domain = "vpc"
+  tags = {
+    Name = "e-commerce-eip"
+  }
+}
+
+# 2. NAT Gateway
+resource "aws_nat_gateway" "main" {
+  # Se despliega en la primera subred pública creada
+  subnet_id     = aws_subnet.public_subnet[0].id 
+  allocation_id = aws_eip.nat_gateway_eip.id 
+  tags = {
+    Name = "e-commerce-nat-gateway"
+  }
+}
+
+# Tablas de Rutas Privadas (para cada subred privada)
+resource "aws_route_table" "private" {
+  count  = length(aws_subnet.private_subnet)
+  vpc_id = aws_vpc.vpc-e-commerce.id
+  tags = {
+    Name = "e-commerce-private-rt-${count.index}"
+  }
+}
+
+# Asociaciones (Private Subnet -> Private Route Table)
+resource "aws_route_table_association" "private" {
+  count          = length(aws_subnet.private_subnet)
+  subnet_id      = aws_subnet.private_subnet[count.index].id
+  route_table_id = aws_route_table.private[count.index].id
+}
+
+# Ruta al NAT Gateway para el tráfico 0.0.0.0/0
+resource "aws_route" "private_nat_route" {
+  count                    = length(aws_route_table.private)
+  route_table_id           = aws_route_table.private[count.index].id
+  destination_cidr_block   = "0.0.0.0/0"
+  nat_gateway_id           = aws_nat_gateway.main.id
+}

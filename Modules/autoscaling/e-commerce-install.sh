@@ -3,6 +3,8 @@ DB_ENDPOINT=$1
 DB_USER=$2
 DB_PASSWORD=$3
 DB_DATABASE=$4
+GIT_TOKEN=$5
+GIT_REPO_URL="https://MrSpyNa:$GIT_TOKEN@github.com/ORT-FI-7417-SolucionesCloud/php-ecommerce-obligatorio.git"
 
 sudo amazon-linux-extras enable epel
 sudo yum install epel-release -y
@@ -12,10 +14,10 @@ sudo yum install php php-cli php-common php-mbstring php-xml php-mysql php-fpm -
 sudo yum install httpd git -y
 sudo systemctl enable httpd
 sudo systemctl start httpd
-git clone https://github.com/ORT-FI-7417-SolucionesCloud/php-ecommerce-obligatorio.git
+git clone "$GIT_REPO_URL"
 cp -r php-ecommerce-obligatorio/* /var/www/html/
 sudo yum install php-mysql.x86_64
-mysql -h {db_endpoint} -u db_user -p e-commerce < /var/www/html/dump.sql
+mysql -h "$DB_ENDPOINT" -u "$DB_USER" -p "$DB_DATABASE" < /var/www/html/dump.sql
 sudo systemctl restart httpd
 cat <<EOF > /var/www/html/config.php
 <?php

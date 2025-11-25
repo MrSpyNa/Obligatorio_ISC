@@ -32,15 +32,15 @@ resource "aws_lb_target_group" "e-commerce_tg" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
- # health_check {
-    #path                = "/" # Usa la ruta raíz o un endpoint específico de tu app
-    #port                = "traffic-port"
-    #protocol            = "HTTP"
-    #interval            = 30
-    #timeout             = 5
-    #healthy_threshold   = 2
-    #unhealthy_threshold = 2
-  #}
+ health_check {
+    path                = "/" # Usa la ruta raíz o un endpoint específico de tu app
+    port                = "traffic-port"
+    protocol            = "HTTP"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+  }
   tags = {
     Name = "e-commerce-tg"
   }

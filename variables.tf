@@ -12,3 +12,8 @@ variable "token" {
   description = "Session Token de Canvas AWS"
   type        = string
 }
+
+variable "git_token" {
+  description = "Token GIT para acceso"
+  type        = string
+}

@@ -39,3 +39,6 @@ variable "db_user" {
   type        = string
 }
 
+variable "git_token" {
+  type = string
+}
