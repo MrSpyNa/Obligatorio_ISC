@@ -13,6 +13,11 @@ variable "asg_sg_id"{
   type = string
 
 }
+
+variable "db_password" {
+  description = "value"
+  type = string
+}
 // ¡ADVERTENCIA! No es seguro dejar contraseñas en código duro. 
 // Usar Secret Manager o variables de entorno para producción.
 //variable "db_password" {

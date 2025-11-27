@@ -34,16 +34,15 @@ resource "aws_launch_template" "e-commerce_lt" {
   key_name      = "vockey"
   # Script para la instalación de la aplicación
   user_data     = base64encode(
-    format(
-      "%s %s %s %s %s %s",
-      file("${path.module}/e-commerce-install.sh"), 
-      var.db_endpoint,
-      var.db_user,
-      var.db_password,
-      var.db_database,
-      var.git_token
-  )
-  )
+    templatefile("${path.module}/e-commerce-install.sh.tpl",{
+      db_endpoint=var.db_endpoint
+      db_user=var.db_user
+      db_password=var.db_password
+      db_database=var.db_database
+      git_token=var.git_token
+ })
+)
+
   vpc_security_group_ids = [aws_security_group.asg_sg.id]
   tags = {
     Name = "e-commerce_Ec2"

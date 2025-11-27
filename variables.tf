@@ -17,3 +17,7 @@ variable "git_token" {
   description = "Token GIT para acceso"
   type        = string
 }
+
+variable "db_password" {
+  description = "Contraseña de la base de datos"
+}
