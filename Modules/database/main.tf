@@ -10,18 +10,15 @@ resource "aws_security_group" "e-commerce_db_sg" {
   name   = "e-commerce-db-sg"
   vpc_id = var.vpc_id
 
-  # Entrada: Solo permite tráfico de MySQL (3306) proveniente del SG de las instancias Frontend
+  # Entrada: Solo permite tráfico de MySQL (3306) proveniente del SG de las instancias
   ingress {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    # Este SG ID DEBE ser proporcionado como input desde el módulo autoscaling
-    # Asumo que crearemos una variable de input para este ID: var.frontend_sg_id
     security_groups = [var.asg_sg_id]
     description     = "Acceso MySQL solo desde el Frontend ASG"
   }
 
-  # Salida: Generalmente se permite la salida de la DB para actualizaciones o logs.
   egress {
     from_port   = 0
     to_port     = 0

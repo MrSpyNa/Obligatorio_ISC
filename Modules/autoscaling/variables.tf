@@ -1,20 +1,20 @@
 variable "vpc_id" {
-  description = "ID de la VPC, obtenido del módulo network"
+  description = "ID del VPC (vbc)"
   type        = string
 }
 
 variable "private_subnet_ids" {
-  description = "Lista de IDs de subredes privadas para el ASG"
+  description = "IDs de las subredes privadas (vpc)"
   type        = list(string)
 }
 
 variable "target_group_arn" {
-  description = "ARN del Target Group (obtenido del módulo loadbalancer)"
+  description = "ARN del Target Group (lb)"
   type        = string
 }
 
 variable "alb_security_group_id" {
-  description = "ID del Security Group del ALB (obtenido del módulo loadbalancer)"
+  description = "ID del Security Group del ALB (lb)"
   type        = string
 }
 

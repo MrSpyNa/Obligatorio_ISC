@@ -12,7 +12,7 @@ sudo yum-config-manager --enable remi-php54
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 #
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023 #
 sudo rpm -Uvh https://repo.mysql.com/mysql57-community-release-el7.rpm
-sudo yum install -y mysql-community-client
+sudo yum install -y mysql-community-client #
 sudo yum install php php-cli php-common php-mbstring php-xml php-mysql php-fpm -y
 sudo yum install php-mysql.x86_64 -y
 sudo yum install httpd git -y
