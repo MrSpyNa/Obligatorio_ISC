@@ -4,7 +4,7 @@
 *.tfplan
 *.plan
 *.out
-#*.tfvars
+*.tfvars
 *.bak
 *.backup
 *.tmp
