@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "e-commerce-db-subnet-group"
-  subnet_ids = var.private_subnet_ids # RDS debe ir en subredes privadas
+  subnet_ids = var.private_subnet_rds_ids # RDS debe ir en subredes privadas
   tags = {
     Name = "e-commerce-db-subnet-group"
   }

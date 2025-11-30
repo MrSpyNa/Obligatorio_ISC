@@ -22,9 +22,9 @@ module "autoscaling" {
   public_subnet_ids     = module.vpc.private_subnet_ids
 }
 module "database" {
-  source             = "./Modules/database"
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnet_ids
-  asg_sg_id          = module.autoscaling.asg_sg_id
-  db_password        = var.db_password
+  source                 = "./Modules/database"
+  vpc_id                 = module.vpc.vpc_id
+  private_subnet_rds_ids = module.vpc.private_subnet_rds_ids
+  asg_sg_id              = module.autoscaling.asg_sg_id
+  db_password            = var.db_password
 }

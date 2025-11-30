@@ -38,6 +38,17 @@ resource "aws_subnet" "private_subnet" {
   }
 }
 
+resource "aws_subnet" "private_subnet_rds" {
+  count                   = 2
+  vpc_id                  = aws_vpc.vpc-e-commerce.id
+  cidr_block              = cidrsubnet("10.0.0.0/16", 8, count.index + 5) #cidrsubnet: Funcion para calcular las direcciones de subnet.
+  map_public_ip_on_launch = false
+  availability_zone       = element(["us-east-1a", "us-east-1b"], count.index) #element: Funcion que devuelve el elemento de una lista segun su indice.
+  tags = {
+    Name = "subnet-privada-RDS-${count.index + 1}"
+  }
+}
+
 #Creacion route table.
 resource "aws_route_table" "RT_ecommerce" {
   vpc_id = aws_vpc.vpc-e-commerce.id

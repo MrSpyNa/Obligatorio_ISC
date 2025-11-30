@@ -12,3 +12,8 @@ output "private_subnet_ids" {
   description = "IDs de las subredes privadas"
   value       = aws_subnet.private_subnet[*].id
 }
+
+output "private_subnet_rds_ids" {
+  description = "IDs de las subredes privadas"
+  value       = aws_subnet.private_subnet_rds[*].id
+}

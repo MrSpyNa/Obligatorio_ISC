@@ -3,19 +3,19 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "private_subnet_ids" {
-  description = "Lista de IDs de subredes privadas para el RDS Subnet Group"
+variable "private_subnet_rds_ids" {
+  description = "Lista de IDs de subredes privadas para el RDS"
   type        = list(string)
 }
 
 variable "asg_sg_id"{
-  description = "Id del sg del asg"
+  description = "ID del Security Group del ASG"
   type = string
 
 }
 
 variable "db_password" {
-  description = "value"
+  description = "Contraseña de la base de datos"
   type = string
 }
 // ¡ADVERTENCIA! No es seguro dejar contraseñas en código duro. 

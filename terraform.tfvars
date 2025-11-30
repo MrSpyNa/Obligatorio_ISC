@@ -1,0 +1,5 @@
+access_key  = ""
+secret_key  = ""
+token       = ""
+git_token   = ""
+db_password = ""
