@@ -5,7 +5,7 @@
 
 ## 1. Diagrama de arquitectura
 
-{INSERTAR IMAGEN DEL DIAGRAMA}
+![](Diagrama_final_aws.jpg)
 
 ## 2. Servicios de AWS utilizados
 
