@@ -15,7 +15,7 @@ ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # CAMBIAR A TU IP PÚBLICA / IP DE BASTION
+    cidr_blocks = ["0.0.0.0/0"] 
     description = "SSH solo para administracion"
   }
 
