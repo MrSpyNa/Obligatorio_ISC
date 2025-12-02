@@ -70,3 +70,9 @@
 1.  Una vez finalizado el `apply`, obtener la URL DNS del ALB (output: `alb_dns_name`).
 2.  Acceder a la URL en el navegador: `http://<ALB_DNS_NAME>`.
 3.  Verificar que la aplicación accede a la página y es navegable.
+
+## 5. Aclaraciones y notas
+
+1) En la sección donde se despliega el RDS, debido a las limitaciones de AWS Academy no pudimos elegir la que desearíamos para un despliegue real (**Multi-AZ**, esta opción desplegaría una *standby replica* en una Zona de Disponibilidad diferente, proveyendo redundancia y *failover* automático en caso de que la instancia primaria falle), asi que optamos por utilizar **Single-AZ**.
+
+2) Durante la creación del *Launch Template*, nos encontramos con varios problemas surgidos de la explicación en torno a la instalación de **MySQL**, ya que al utilizar los comandos planteados en el *README* de la aplicación, la instalación no se llevaba a cabo como era debido, es por eso que se optó por realizar ciertos cambios y utilizar otros comandos para poder conseguir la versión de MySQL correcta para el funcionamiento de la aplicación.
