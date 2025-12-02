@@ -40,8 +40,8 @@ resource "aws_db_instance" "e-commerce_db" {
   skip_final_snapshot  = true
   # Configuración para alta disponibilidad (Tolerancia a Fallas)
 
-  multi_az             = false //Esta conf en TRUE seria la ideal para la tolerancia a fallos
-  publicly_accessible  = false # ¡SIEMPRE en false para bases de datos!
+  multi_az             = false # Esta conf en TRUE seria la ideal para la tolerancia a fallos
+  publicly_accessible  = false
 
   tags = {
     Name = "e-commerce-DB"
