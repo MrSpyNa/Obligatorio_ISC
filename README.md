@@ -1,7 +1,7 @@
 # <h1>Obligatorio - Implementación de Soluciones Cloud</h1>
 ## Migración del Frontend E-commerce a AWS
 
-**Grupo:** Joaquín Escudero y Anthony Berruti
+**Grupo:** Joaquín Escudero y Anthony Berrutti
 
 ## 1. Diagrama de arquitectura
 
