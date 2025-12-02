@@ -33,7 +33,7 @@ resource "aws_lb_target_group" "e-commerce_tg" {
   vpc_id   = var.vpc_id
 
  health_check {
-    path                = "/" # Usa la ruta raíz o un endpoint específico de tu app
+    path                = "/" 
     port                = "traffic-port"
     protocol            = "HTTP"
     interval            = 30
