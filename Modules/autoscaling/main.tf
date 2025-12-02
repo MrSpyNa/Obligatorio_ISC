@@ -55,7 +55,7 @@ resource "aws_autoscaling_group" "e-commerce_asg" {
   max_size            = 6
   min_size            = 2
   # Implementa la tolerancia a fallas al usar subredes en múltiples AZs 
-  vpc_zone_identifier = var.private_subnet_ids #cambiar nuevamente a privada, mera razon de testeo
+  vpc_zone_identifier = var.private_subnet_ids
   target_group_arns   = [var.target_group_arn]
 
   launch_template {
